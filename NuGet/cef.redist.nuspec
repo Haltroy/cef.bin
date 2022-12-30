@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>cef.bin.$Platform$</id>
+    <version>$version$</version>
+    <authors>The Chromium Embedded Framework Authors</authors>
+    <owners>Yorot, CefNet and CefSharp Authors</owners>
+    <projectUrl>https://github.com/haltroy/cef.bin</projectUrl>
+    <iconUrl>https://raw.github.com/haltroy/cef.bin/main/NuGet/cef128x128.gif</iconUrl>
+    <license type="file">LICENSE.txt</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CEF - the Chromium Embedded Framework.
+    NOTE: This package is maintained on behalf of the CEF authors by Yorot developers at http://github.com/haltroy/cef.bin with help from the CefSharp authors at http://github.com/cefsharp/cef-binary</description>
+    <tags>chrome chromium native embedded browser CEF nativepackage</tags>
+    <copyright>Copyright © 2008-2022</copyright>
+  </metadata>
+  <files>
+    <file src="..\cef_$CPlatform$\$Configuration$\*" target="CEF\" />
+	<!-- TODO: Do we need this locales line or it will pack them too? -->
+    <file src="..\cef_$CPlatform$\Resources\locales\*.pak" target="CEF\locales"/>
+	<file src="..\LICENSE.txt" target="CEF\LICENSE.txt" />
+	<file src="..\LICENSE.txt" target="LICENSE.txt" />
+
+    <file src="cef.redist.$Platform$.props" target="build\" />
+	<file src="cef.redist.$Platform$.props" target="buildTransitive\" />	
+  </files>
+</package>

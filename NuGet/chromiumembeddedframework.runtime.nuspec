@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata minClientVersion="5.0.0">
+    <id>cef.bin</id>
+    <version>$version$</version>
+    <authors>The Chromium Embedded Framework Authors</authors>
+    <owners>Yorot, CefNet and CefSharp Authors</owners>
+    <projectUrl>https://github.com/haltroy/cef.bin</projectUrl>
+    <icon>images\cef128x128.png</icon>
+    <license type="file">LICENSE.txt</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <repository type="git" url="https://bitbucket.org/chromiumembedded/cef.git" />
+	<!-- TODO: Transfer to CefNet account -->
+    <description>Chromium Embedded Framework (CEF) Release Distribution
+    NOTE: This package is maintained on behalf of the CEF authors by Yorot and CefNet developers at http://github.com/haltroy/cef.bin with help from CefSharp authors' at https://github.com/cefshapr/cef-binary.</description>
+    <tags>chrome chromium native embedded browser CEF nativepackage</tags>
+    <copyright>Copyright © 2008-2021</copyright>
+  </metadata>
+  <files>
+	<!-- Architecture-specific files folder hierarchy lost (native subfolders)  -->
+    <!-- https://github.com/NuGet/Home/issues/7698#issuecomment-455368655 -->
+    <!-- We have to copy swiftshader and locales via manually -->
+    <file src="..\cef_windows32\locales\*.pak" target="CEF\win-x86\locales"/>
+	<file src="..\cef_windows64\locales\*.pak" target="CEF\win-x64\locales"/>
+    <file src="..\cef_windowsarm64\locales\*.pak" target="CEF\win-arm64\locales"/>
+    <file src="..\cef_linuxarm64\locales\*.pak" target="CEF\linux-arm64\locales"/>
+    <file src="..\cef_linuxarm\locales\*.pak" target="CEF\linux-arm\locales"/>
+    <file src="..\cef_linux64\locales\*.pak" target="CEF\linux-x64\locales"/>
+	
+	<!-- TODO: Fix OSX -->
+    <file src="..\cef_macos64\cefclient.app\Contents\locales\*.pak" target="CEF\osx-x64\locales"/>
+    <file src="..\cef_macosarm64\locales\*.pak" target="CEF\osx-arm64\locales"/>
+	
+    <file src="..\LICENSE.txt" target="LICENSE.txt" />
+    <file src="chromiumembeddedframework.runtime.json" target="runtime.json" />
+	<file src="chromiumembeddedframework.runtime.props" target="buildTransitive\" />
+    <file src="cef128x128.png" target="images\" />
+  </files>
+</package>

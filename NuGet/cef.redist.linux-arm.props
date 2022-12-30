@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    Files are no longer copied as part of this targets file.
+    For projects other than CefSharp define a target to copy the files.
+    Checkout the CefSharp.Common.targets file for an example
+    -->
+  
+  <!--
+    Using wildcard matching as per https://stackoverflow.com/a/17252671
+    -->  
+  <ItemGroup>
+    <CefRedistLinuxARM Include="$(MSBuildThisFileDirectory)..\CEF\**\*.*" />
+  </ItemGroup>
+  
+  <Target Name="CefRedistLinuxARMCopyResources">
+    <PropertyGroup>
+      <CefRedistLinuxARMTargetDir Condition="'$(CefRedistLinuxARMTargetDir)' == ''">$(TargetDir)</CefRedistLinuxARMTargetDir>
+    </PropertyGroup>
+    <!--
+    Cannot gurantee access to the main CefRedistLinuxARM ItemGroup here
+    so we create a duplicate inside our target.
+    https://github.com/dotnet/project-system/issues/4158
+    -->
+    <ItemGroup>
+      <_CefRedistLinuxARM Include="$(MSBuildThisFileDirectory)..\CEF\**\*.*" />
+    </ItemGroup>
+    <Message Importance="high" Text="Copying CEF Redist Linux ARM files from $(MSBuildThisFileDirectory)..\CEF to $(CefRedistLinuxARMTargetDir)" />
+    <Copy SourceFiles="@(_CefRedistLinuxARM)" DestinationFiles="@(_CefRedistLinuxARM->'$(CefRedistLinuxARMTargetDir)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

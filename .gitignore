@@ -1,0 +1,15 @@
+.tools/*
+cef/*
+cef_*/
+
+*.tmp
+*.nupkg
+*.sdf
+*.opensdf
+*.suo
+*.user
+*.log
+_ReSharper*
+out
+*Thumbs.db
+*.bz2
